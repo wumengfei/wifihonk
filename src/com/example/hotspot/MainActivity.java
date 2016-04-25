@@ -41,7 +41,10 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
 		public void handleMessage(Message msg){
 			if(msg.what==0x111){
 				//modify ssid at regular time
+				tv1.setText("方向角："+direction);
+				flag=!flag;
 				setWifiApEnabled(flag);
+				
 			}
 		}
 	};
@@ -63,9 +66,7 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				flag=!flag;
-				setWifiApEnabled(flag);
-				
+					
 				//设置定时器，修改ssid
 		        new Timer().schedule(new TimerTask(){
 					@Override
@@ -73,7 +74,7 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
 						// TODO Auto-generated method stub
 						handler.sendEmptyMessage(0x111);
 					}        	
-		        }, 0,1000);
+		        }, 0,100);
 			}
 		});
         
